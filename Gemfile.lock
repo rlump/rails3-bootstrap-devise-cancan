@@ -130,9 +130,9 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
-    omniauth-facebook (1.4.1)
-      omniauth-oauth2 (~> 1.1.0)
-    omniauth-oauth2 (1.1.1)
+    omniauth-facebook (1.4.0)
+      omniauth-oauth2 (~> 1.0.2)
+    omniauth-oauth2 (1.0.3)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
@@ -234,7 +234,7 @@ DEPENDENCIES
   koala
   launchy (>= 2.2.0)
   omniauth
-  omniauth-facebook
+  omniauth-facebook (= 1.4.0)
   quiet_assets (>= 1.0.2)
   rails (= 3.2.13)
   rolify (>= 3.2.0)

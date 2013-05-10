@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @albums = @user.facebook.get_connections("me","albums")
   end
 
   def update
