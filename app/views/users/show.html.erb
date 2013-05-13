@@ -16,8 +16,8 @@
       <% end %>
         <div class="span3">
         <a href="#" class="thumbnail node-two">
-          <%= image_tag(@user.facebook.get_object(album["cover_photo"])["picture"]) %>
-          <%= album["name"] %>
+          <%= image_tag(album.image_url) %>
+          <%= album.name %>
         </a>
         </div><!--/span-->
       <% count += 1 %>
