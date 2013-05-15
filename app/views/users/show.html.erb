@@ -10,14 +10,14 @@
     </div>
 
     <% count = 0 %>
-    <% @albums.each do |album| %>
+    <% @photos.each do |photo| %>
       <% if count == 0 %>
       <div class="row">
       <% end %>
         <div class="span3">
         <a href="#" class="thumbnail node-two">
-          <%= image_tag(album.image_url) %>
-          <%= album.name %>
+          <%= image_tag(photo.image_url) %>
+          <%= photo.name %>
         </a>
         </div><!--/span-->
       <% count += 1 %>

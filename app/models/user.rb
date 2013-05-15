@@ -48,17 +48,38 @@ class User < ActiveRecord::Base
     @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
 
-  def albums
+  def albums(index = nil)
     if not @albums
       @albums = []
+      @photos = []
+      album_index = 0
       self.facebook.get_connections("me","albums").each do |fb_album|
         new_album = Album.new
         new_album.image_url = self.facebook.get_object(fb_album["cover_photo"])["picture"]
         new_album.name = fb_album["name"]
+        new_album.index = album_index
+        album_index += 1
         @albums << new_album
+        this_albums_photos = []
+        photo_index = 0
+        self.facebook.get_connections(fb_album["id"],"photos").each do |photo|
+          new_album = Album.new
+          new_album.name = photo["name"]
+          new_album.image_url = photo["source"]
+          new_album.index = photo_index
+          photo_index += 1
+          this_albums_photos << new_album
+        end
+        @photos << this_albums_photos
       end
     end
-    @albums
+    if (index)
+      return @photos[index]
+    else
+      return @albums
+    end
   end
+
+
 
 end

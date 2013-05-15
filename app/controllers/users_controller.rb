@@ -9,6 +9,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @albums = @user.albums
+    if (params[:album_id])
+      index = params[:album_id].to_i
+      @photos = @user.albums(index)
+    else
+      @photos = @user.albums
+    end
   end
 
   def update

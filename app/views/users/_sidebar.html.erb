@@ -2,13 +2,14 @@
 <%= image_tag(@user.facebook.get_picture("me")) %>
   <h3>Facebook Photos: </h3>
   <ul class="nav nav-list">
-    <li class="nav-header node-two">Your Albums </li>
-    <li class="active"><a href="#">Link</a></li>
+    <li class="nav-header node-two">
+      <%= link_to "Your Albums", user_path(@user) %>
+    </li>
     <% @albums.each do |album| %>
       <li>
-        <a href="#" class="thumbnail node-two">
-          <%= album.name %>
-        </a>
+
+         <%= link_to album.name, user_path(@user) + "/album/#{album.index}"    %>
+
       </li>
     <% end %>
     <li class="nav-header">Target Friend's Album</li>
