@@ -3,11 +3,53 @@
     <%= render "sidebar" %>
   </div><!--/span-->
   <div class="span9">
-    <div class="hero-unit" style="border: 3px solid Tomato; background-color: Orange">
-      <h3>User:</h3>
-      <p>User: <%= @user.name %></p>
-      <p>Email: <%= @user.email if @user.email %></p>
-    </div>
+      <% @position_0 = nil %>
+      <% @position_1 = nil %>
+      <% @position_2 = nil %>
+
+
+      <div class="canvas">
+        <div class="half-box left">
+          <% if @position_0.present? %>
+              <%= @position_0.message %>
+          <% else %>
+            <div class="new centered">
+              <%= link_to 'T', "#" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="quarter-box right">
+          <% if @position_1.present? %>
+            <a href="<%= edit_photo_url(@position_1.id) %>"><img src="<%= @position_1.source_url %>"></a>
+          <% else %>
+            <div class="new centered">
+              <%= link_to 'P', "#" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="quarter-box right">
+          <% if @position_2.present? %>
+            <a href="<%= edit_photo_url(@position_2.id) %>"><img src="<%= @position_2.source_url %>"></a>
+          <% else %>
+            <div class="new centered">
+              <%= link_to 'P', "#" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="pagination">
+  <ul>
+    <li><a href="#">Prev</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</div>
+      </div>
+
+
 
     <% count = 0 %>
     <% @photos.each do |photo| %>

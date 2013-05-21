@@ -54,3 +54,61 @@ body { padding-top: 60px; }
   color: blue;
   background-color: #FFF1A3;
 }
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+/* CSS FOR CANVAS ON SHOW PAGE */
+
+
+.canvas {
+  width: 825px;
+  height: 637px;
+  border-style: solid;
+  border-color: tomato;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.half-box {
+  width: 394px;
+  margin: 10px;
+  height: 618px;
+  border: thin solid tomato;
+}
+
+.quarter-box {
+  width: 385px;
+  margin: 10px;
+  height: 298px;
+  border: thin solid tomato;
+}
+
+.quarter-box img {
+  width: 385px;
+  height: 298px;
+}
+
+.new a {
+  font-size: 80px;
+  font-weight: bold;
+  color: tomato;
+}
+
+.centered {
+  position: relative;
+  top: 40%;
+  left: 45%;
+}
+
+.book-show {
+  width: 825px;
+  height: 40px;
+  margin-left: 50px;
+}
+
