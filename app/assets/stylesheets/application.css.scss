@@ -112,4 +112,11 @@ body { padding-top: 60px; }
   margin-left: 50px;
 }
 
+.mypagination ul > li > a,
+.mypagination ul > li > span {
+  color: tomato;
+  border: 1px solid red;
+  border-left-width: 0;
+}
+
 

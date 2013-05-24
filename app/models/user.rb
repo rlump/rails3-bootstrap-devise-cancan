@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
     if user
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = auth.credentials.expires_at
+      User::UserAlbums[user.id] = nil
+      User::UserPhotos[user.id] = nil
     end
     user
   end
@@ -48,8 +50,18 @@ class User < ActiveRecord::Base
     @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
 
+  UserAlbums = {}
+  UserPhotos = {}
+
   def albums(index = nil)
+    logger.debug "Users Model album #{id}:"
+    @albums = UserAlbums[id]
+    @photos = UserPhotos[id]
+    if @albums
+      logger.debug "Albums present: "
+    end
     if not @albums
+      logger.debug "NOT Users Model album:"
       @albums = []
       @photos = []
       album_index = 0
@@ -72,7 +84,10 @@ class User < ActiveRecord::Base
         end
         @photos << this_albums_photos
       end
+      UserAlbums[id] = @albums
+      UserPhotos[id] = @photos
     end
+
     if (index)
       return @photos[index]
     else

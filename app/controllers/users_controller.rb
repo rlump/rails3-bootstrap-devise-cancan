@@ -8,13 +8,22 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    logger.debug "GET Users album:"
     @albums = @user.albums
+    logger.debug "GOT Users album:"
+    @page = 0
     if (params[:album_id])
+      logger.debug "GET Users photos:"
       index = params[:album_id].to_i
       @photos = @user.albums(index)
     else
-      @photos = @user.albums
+      @photos = @albums
     end
+  end
+
+  def page
+    @user = User.find(params[:id])
+    @page = params[:page_id]
   end
 
   def update

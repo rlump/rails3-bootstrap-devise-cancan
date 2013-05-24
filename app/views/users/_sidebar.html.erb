@@ -7,9 +7,7 @@
     </li>
     <% @albums.each do |album| %>
       <li>
-
          <%= link_to album.name, user_path(@user) + "/album/#{album.index}"    %>
-
       </li>
     <% end %>
     <li class="nav-header">Target Friend's Album</li>

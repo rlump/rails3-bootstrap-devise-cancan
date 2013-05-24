@@ -1,0 +1,44 @@
+<% @position_0 = nil %>
+<% @position_1 = nil %>
+<% @position_2 = nil %>
+
+<div class="canvas">
+<div class="half-box left">
+  <% if @position_0.present? %>
+      <%= @position_0.message %>
+  <% else %>
+    <div class="new centered">
+      <%= link_to "T", "#" %>
+    </div>
+  <% end %>
+</div>
+<div class="quarter-box right">
+  <% if @position_1.present? %>
+    <a href="<%= edit_photo_url(@position_1.id) %>"><img src="<%= @position_1.source_url %>"></a>
+  <% else %>
+    <div class="new centered">
+      <%= link_to 'P', "#" %>
+    </div>
+  <% end %>
+</div>
+<div class="quarter-box right">
+  <% if @position_2.present? %>
+    <a href="<%= edit_photo_url(@position_2.id) %>"><img src="<%= @position_2.source_url %>"></a>
+  <% else %>
+    <div class="new centered">
+      <%= link_to 'P', "#" %>
+    </div>
+  <% end %>
+</div>
+</div>
+<div class="pagination mypagination pagination-right">
+  <ul>
+    <li><a href="#">Prev</a></li>
+    <li> <%= link_to "1", user_path(@user) + "/page/1", remote: true %> </li>
+    <li> <%= link_to "2", user_path(@user) + "/page/2", remote: true %> </li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</div>
