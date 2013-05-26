@@ -3,25 +3,19 @@
 <% @position_2 = nil %>
 
 <div class="canvas">
-<div class="half-box left">
+  <div class="half-box left">
   <% if @position_0.present? %>
       <%= @position_0.message %>
   <% else %>
     <div class="new centered">
-      <%= link_to "T", "#" %>
+      <%= link_to "T#{@page}", "#" %>
     </div>
   <% end %>
-</div>
-<div class="quarter-box right">
-  <% if @position_1.present? %>
-    <a href="<%= edit_photo_url(@position_1.id) %>"><img src="<%= @position_1.source_url %>"></a>
-  <% else %>
-    <div class="new centered">
-      <%= link_to 'P', "#" %>
-    </div>
-  <% end %>
-</div>
-<div class="quarter-box right">
+  </div>
+  <div id="layoutPhotoTarget" class="quarter-box right">
+  <%= image_tag("fbook.jpeg") %>
+  </div>
+  <div class="quarter-box right">
   <% if @position_2.present? %>
     <a href="<%= edit_photo_url(@position_2.id) %>"><img src="<%= @position_2.source_url %>"></a>
   <% else %>
@@ -29,8 +23,13 @@
       <%= link_to 'P', "#" %>
     </div>
   <% end %>
+  </div>
 </div>
-</div>
+<%= form_tag("/pages/#{@page}", :method => "post") do %>
+  <%= label_tag(:q, "Photo for page #{@page}:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Submit") %>
+<% end %>
 <div class="pagination mypagination pagination-right">
   <ul>
     <li><a href="#">Prev</a></li>
