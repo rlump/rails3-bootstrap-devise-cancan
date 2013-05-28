@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     logger.debug "GET Users album:"
     @albums = @user.albums
     logger.debug "GOT Users album:"
-    @page = @user.pages.first.id
+    @page = @user.pages.first
     if (params[:album_id])
       logger.debug "GET Users photos:"
       index = params[:album_id].to_i
@@ -22,27 +22,21 @@ class UsersController < ApplicationController
   end
 
   def page
-    @user = User.find(params[:id])
-    @page = params[:page_id]
-  end
-
-  def photo
     logger.debug "POST photo user #{params[:id]} page #{params[:page_id]} #{params[:inputPhotoTarget]}"
-    user = User.find_by_id(params[:id])
-    if (user)
-      page = user.pages.find_by_id(params[:page_id])
-      if page
-        logger.debug "POST found page"
-        photos = page.photos.where(layout_position = 1)
-        if (photos.count == 0)
-          photo = Photo.new
-          photo.layout_position = 1
-          photo.image_url = params[:inputPhotoTarget]
-          page.photos << photo
-        else
-          photos.first.image_url = params[:inputPhotoTarget]
-          photos.first.save
-        end
+    @user = User.find(params[:id])
+    @page = @user.pages.find_by_id(params[:page_id])
+
+    logger.debug "POST found page"
+    if (params[:inputPhotoTarget] && params[:inputPhotoTarget].length > 0)
+      photos = @page.photos.where(layout_position = 1)
+      if (photos.count == 0)
+        photo = Photo.new
+        photo.layout_position = 1
+        photo.image_url = params[:inputPhotoTarget]
+        @page.photos << photo
+      else
+        photos.first.image_url = params[:inputPhotoTarget]
+        photos.first.save
       end
     end
   end

@@ -20,5 +20,16 @@ $(document).ready(function(){
     var src = $(this).attr("src")
     $("#layoutPhotoTarget").html('<img src = "' + src + '">');
     $("#inputPhotoTarget").val(src);
+    $("#pagenav").html('<div class="span9">\
+      <button id="cancel_photo" class="btn btn-danger right pad_bottom" type="button">Cancel</button>\
+      <button id="save_photo" class="btn btn-primary right pad_bottom" type="button" >Save Changes</button>\
+      <\div>');
+    $("#save_photo").click(function(){
+      $('#photo_submit').submit();
+    });
+    $("#cancel_photo").click(function(){
+      $("#inputPhotoTarget").val("");
+      $('#photo_submit').submit();
+    });
   });
 });

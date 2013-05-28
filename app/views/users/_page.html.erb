@@ -8,12 +8,12 @@
       <%= @position_0.message %>
   <% else %>
     <div class="new centered">
-      <%= link_to "T#{@page}", "#" %>
+      <%= link_to "T#{@page.id}", "#" %>
     </div>
   <% end %>
   </div>
   <div id="layoutPhotoTarget" class="quarter-box right">
-    <% if (page = @user.pages.find_by_id(@page)) && (photos = page.photos.where(layout_position = 1)).count != 0 %>
+    <% if (photos = @page.photos.where(layout_position = 1)).count != 0 %>
       <%= image_tag(photos.first.image_url) %>
     <% else %>
       <%= image_tag("fbook.jpeg") %>
@@ -29,19 +29,20 @@
   <% end %>
   </div>
 </div>
-<%= form_tag("/users/#{@user.id}/pages/#{@page}/photo", :method => "post", remote: true) do %>
-  <%= label_tag(:q, "Photo for page #{@page}:") %>
-  <%= text_field_tag "inputPhotoTarget", "image_url" %>
-  <%= submit_tag("Submit") %>
+<%= form_tag("/users/#{@user.id}/pages/#{@page.id}", :id => "photo_submit", :method => "post", remote: true) do %>
+  <%= hidden_field_tag "inputPhotoTarget", "image_url" %>
 <% end %>
-<div class="pagination mypagination pagination-right">
-  <ul>
-    <li><a href="#">Prev</a></li>
-    <% page_num = 1 %>
-    <% @user.pages.each do |page| %>
-      <li> <%= link_to "#{page_num}", user_path(@user) + "/pages/#{page.id}", remote: true %> </li>
-      <% page_num += 1 %>
-    <% end %>
-    <li><a href="#">Next</a></li>
-  </ul>
+
+<div id=pagenav>
+  <div class="pagination mypagination pagination-right">
+    <ul>
+      <li><a href="#">Prev</a></li>
+      <% page_num = 1 %>
+      <% @user.pages.each do |page| %>
+        <li> <%= link_to "#{page_num}", user_path(@user) + "/pages/#{page.id}", remote: true %> </li>
+        <% page_num += 1 %>
+      <% end %>
+      <li><a href="#">Next</a></li>
+    </ul>
+  </div>
 </div>
