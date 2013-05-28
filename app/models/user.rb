@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :subject_relations, :as => :subjectable
   has_many :predicate_relations, :as => :predicable
 
+  has_many :pages
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

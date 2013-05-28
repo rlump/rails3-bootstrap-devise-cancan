@@ -19,5 +19,6 @@ $(document).ready(function(){
   $("img").click(function(){
     var src = $(this).attr("src")
     $("#layoutPhotoTarget").html('<img src = "' + src + '">');
+    $("#inputPhotoTarget").val(src);
   });
 });
